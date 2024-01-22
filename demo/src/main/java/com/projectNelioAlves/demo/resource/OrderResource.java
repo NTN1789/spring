@@ -1,6 +1,8 @@
 package com.projectNelioAlves.demo.resource;
 
+import com.projectNelioAlves.demo.Entities.Order;
 import com.projectNelioAlves.demo.Entities.User;
+import com.projectNelioAlves.demo.services.OrderServices;
 import com.projectNelioAlves.demo.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +15,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/orders")
+public class OrderResource {
 @Autowired
-    private UserServices services;
+    private OrderServices services;
     @GetMapping
-    public ResponseEntity<List <User>>  findAll(){      // uma lista de user
-    List <User> list =  services.findAll();
+    public ResponseEntity<List <Order>>  findAll(){      // uma lista de user
+    List <Order> list =  services.findAll();
             return  ResponseEntity.ok().body(list);
     }
 
     @GetMapping( value = "{id}")
 
-    public Optional<User> findById(@PathVariable Long id ){
+    public Optional<Order> findById(@PathVariable Long id ){
            return  services.findById(id);
     }
 }

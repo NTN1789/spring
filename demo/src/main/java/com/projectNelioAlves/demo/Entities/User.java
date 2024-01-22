@@ -1,8 +1,11 @@
 package com.projectNelioAlves.demo.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +26,10 @@ public class User implements Serializable {
     private  String password ;
 
 
+    @JsonIgnore // vai ajudar ignorar a associação
+@OneToMany(mappedBy = "client")    // o client vai ser passado por aqui
+        private List<Order> orders  = new ArrayList<>() ;   // instanciando em um array List
+        // só colocar get em coleção
     public  User (){
 
     }
@@ -75,6 +82,10 @@ public class User implements Serializable {
         this.password = password;
     }
 
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 
     @Override
     public boolean equals(Object o) {
