@@ -21,7 +21,9 @@ public class Product  implements Serializable {
     private String imgUrl;
 
 
-    @Transient
+        // fazendo a tabela de assoaicao
+    @ManyToMany                                           // nome da tabela e chave estrágeira
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns =  @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
     // não vai ter mais de um produto da mesma categoria
     // instanciando ja , vai começar vazio a class

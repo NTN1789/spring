@@ -18,7 +18,10 @@ public class Category implements Serializable {
 
     private  String nome ;
 
-    @Transient
+
+    // colocando associacao
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")   // colocando o nome da colecao na outra classe que esta e  product
 private Set<Product> products = new HashSet<>();
     // não vai ter mais de um produto da mesma categoria
     // instanciando ja , vai começar vazio a class
