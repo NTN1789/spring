@@ -21,13 +21,26 @@ public class Product  implements Serializable {
     private String imgUrl;
 
 
-    private Set<Category> categories = new HashSet<>(); // instanciando ja , vai começar vazio a class
+    @Transient
+    private Set<Category> categories = new HashSet<>();
+    // não vai ter mais de um produto da mesma categoria
+    // instanciando ja , vai começar vazio a class
 
 
 
     public Product() {
     }
 
+
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
+
+        // não coloquei o category por já está sendo instanciado
+    }
 
     public Long getId() {
         return id;
@@ -70,9 +83,9 @@ public class Product  implements Serializable {
     }
 
 
-
-
-
+    public Set<Category> getCategories() {
+        return categories;
+    }
 
     @Override
     public int hashCode() {

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_category")
@@ -16,7 +18,11 @@ public class Category implements Serializable {
 
     private  String nome ;
 
-
+    @Transient
+private Set<Product> products = new HashSet<>();
+    // não vai ter mais de um produto da mesma categoria
+    // instanciando ja , vai começar vazio a class
+    // nõa pode  ter set , por conta de não fazer sentido trocar a coleção de produtos
 
 
     public  Category(){
@@ -44,6 +50,10 @@ public class Category implements Serializable {
         this.nome = nome;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -68,4 +78,6 @@ public class Category implements Serializable {
             return false;
         return true;
     }
+
+
 }
